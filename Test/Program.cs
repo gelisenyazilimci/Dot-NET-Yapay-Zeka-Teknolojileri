@@ -17,9 +17,16 @@ internal static class Program
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             .Build();
 
+        var promptJson = new ConfigurationBuilder()
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile("./SystemPromptArgument.json", optional: false, reloadOnChange: true)
+            .Build();
+        
         var deepSeekApiKey = configuration["DeepSeek:ApiKey"];
         var modelId = configuration["DeepSeek:ModelId"];
 
+        var argument = promptJson["prompt"]; //Burası değişitirilebilir!
+        
         // 2. API Key ve Model ID'nin boş olmadığını kontrol et
         if (string.IsNullOrWhiteSpace(deepSeekApiKey))
             // ReSharper disable once NotResolvedInText
@@ -27,6 +34,12 @@ internal static class Program
         if (string.IsNullOrWhiteSpace(modelId))
             // ReSharper disable once NotResolvedInText
             throw new ArgumentNullException("DeepSeek:ModelId", "Model ID bulunamadı.");
+
+        if (string.IsNullOrEmpty(argument))
+            // ReSharper disable once NotResolvedInText
+            // Sistem Promptu bulunamadığı zaman kullanıcıya sadece ERROR hatası atılır.
+            throw new ArgumentNullException("Prompt", "ERROR!");  
+            
 
         // 3. Kernel oluşturmak için yeni API: Kernel.CreateBuilder() kullanılıyor
         var builder = Kernel.CreateBuilder().AddOpenAIChatCompletion(
@@ -39,11 +52,13 @@ internal static class Program
         // 6. Eğer deepseek-reasoner modeli kullanılıyorsa, düşünme süresi ölçümü yapılacak
         bool isDeepSeekReasoner = modelId.Equals("deepseek-reasoner", StringComparison.OrdinalIgnoreCase);
 
-        while (true)
+        while (!string.IsNullOrEmpty(argument))
         {
             Console.Write("Prompt Giriniz: ");
-            var prompt = Console.ReadLine();
-            if (string.IsNullOrEmpty(prompt))
+            var inputPrompt = Console.ReadLine();
+            var combinedPrompt = argument + inputPrompt;
+
+            if (string.IsNullOrEmpty(inputPrompt))
             {
                 Console.WriteLine("Çıkış Yapıldı!");
                 break;
@@ -51,9 +66,10 @@ internal static class Program
 
             if (isDeepSeekReasoner)
             {
+				Console.WriteLine("Düşünmeye başlıyorum");
                 // Düşünme süresini ölçmek için Stopwatch başlatılıyor
                 var stopWatch = Stopwatch.StartNew();
-                var result = await kernel.InvokePromptAsync(prompt);
+                var result = await kernel.InvokePromptAsync(combinedPrompt);
                 stopWatch.Stop();
 
                 var milliSeconds = stopWatch.ElapsedMilliseconds;
@@ -66,8 +82,12 @@ internal static class Program
                 Console.WriteLine(resultTime);
                 Console.WriteLine(result);
             }
-            else Console.WriteLine(await kernel.InvokePromptAsync(prompt)); // Result
-            // deepseek-reasoner modeli kullanılmıyorsa sadece sonucu göster
+            else
+            {
+                // Normal mod: Sadece modelin yanıtını göster
+                var result = await kernel.InvokePromptAsync(combinedPrompt);
+                Console.WriteLine(result);
+            }
         }
     }
 }
