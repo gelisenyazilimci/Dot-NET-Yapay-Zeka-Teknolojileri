@@ -19,3 +19,7 @@ Semantic Kernel, iki ana bellek türünü destekler:
 ---
 
 - Bu iki bellek türü sayesinde Semantic Kernel, dinamik ve uyarlanabilir bir etkileşim yönetimi sunar. Kısa vadeli hafıza, anlık diyalogların yönetilmesinde kritik rol oynarken; uzun vadeli hafıza, kullanıcıya özgü geçmiş bilgileri entegre ederek daha tutarlı ve derinlemesine yanıtlar oluşturulmasına olanak tanır. Böylece sistem, hem esnek hem de bağlamı koruyarak etkili bir iletişim sağlar.
+
+---
+
+-  Sıradaki başlığık olan `Semantic Kernel İle Hangi Uygulamalar Yapılabilir?` başlığına bu linkten gidebilirsiniz **-->**   **[Semantic Kernel İle Hangi Uygulamalar Yapılabilir?](/05--Semantic-Kernel-İle-Hangi-Uygulamalar-Yapılabilir/README.md)**

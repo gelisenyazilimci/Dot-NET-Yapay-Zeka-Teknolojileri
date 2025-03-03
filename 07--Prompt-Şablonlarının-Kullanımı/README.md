@@ -1,4 +1,4 @@
-# Templates Kullanımı
+# Templates Şablonlarının Düzgün Kullanımı
 
 ---
 
@@ -63,3 +63,5 @@ Console.WriteLine(result);
 - Şablon, JSON içerisinde saklanır ve `template` anahtarı aracılığıyla okunur.
 - `{{$price}}` ve `{{$stock}}` yer tutucuları, sırasıyla "150" ve "Mevcut" değerleri ile değiştirilir.
 - Bu yapı, şablonun dinamik olarak güncellenmesini ve merkezi olarak yönetilmesini sağlar.
+
+---

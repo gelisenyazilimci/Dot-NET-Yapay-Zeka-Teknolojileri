@@ -29,3 +29,7 @@
 ## **Kısacası / Özetle**
 
 Semantic Kernel, modüler yapısı sayesinde yapay zeka işlevlerini yeniden kullanılabilir hale getirir. `Plugin` yapısı, belirli görevleri yerine getiren modüler bileşenleri ifade ederken; `Function` ise bu bileşenler içerisindeki spesifik işlemleri gerçekleştirir. Böylece, LLM'lere çeşitli görevler ve uygulamalar için özel yetenekler kazandırmak mümkün olur.
+
+---
+
+-  Sıradaki başlığık olan `Prompt Şablonlama ve Düzgün Prompt Yönetimi` başlığına bu linkten gidebilirsiniz **-->**   **[Prompt Şablonlama ve Düzgün Prompt Yönetimi](/03--Prompt-Şablonlama-ve-Düzgün-Prompt-Yönetimi/README.md)**

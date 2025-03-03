@@ -9,3 +9,5 @@
 **Bu çerçeve**, geliştiricilerin ihtiyaçlarına uygun şekilde özelleştirilerek, LLM destekli tam kapsamlı bir altyapı oluşturulmasına imkan tanır.
 
 ---
+
+-  Sıradaki başlığık olan `Fonksiyon ve plugin` başlığına bu linkten gidebilirsiniz --> **[Fonksiyon ve plugin](/01--Plugins-ve-Functions/README.md)**
